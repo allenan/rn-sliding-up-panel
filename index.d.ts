@@ -4,7 +4,8 @@ import {
   StyleProp,
   ViewStyle,
   PanResponderGestureState,
-  GestureResponderHandlers
+  GestureResponderHandlers,
+  GestureResponderEvent
 } from 'react-native'
 
 export interface SlidingUpPanelProps {
@@ -16,6 +17,7 @@ export interface SlidingUpPanelProps {
   minimumDistanceThreshold?: number
   avoidKeyboard?: boolean
   onBackButtonPress?: () => boolean
+  onShouldAllowDragging?: (event: GestureResponderEvent, gestureState: PanResponderGestureState) => boolean
   onDragStart?: (value: number, gestureState: PanResponderGestureState) => void
   onDragEnd?: (value: number, gestureState: PanResponderGestureState) => void
   onMomentumDragStart?: (value: number) => void

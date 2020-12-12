@@ -46,6 +46,7 @@ class SlidingUpPanel extends React.PureComponent {
     minimumDistanceThreshold: PropTypes.number,
     avoidKeyboard: PropTypes.bool,
     onBackButtonPress: PropTypes.func,
+    onShouldAllowDragging: PropTypes.func,
     onDragStart: PropTypes.func,
     onDragEnd: PropTypes.func,
     onMomentumDragStart: PropTypes.func,
@@ -70,6 +71,7 @@ class SlidingUpPanel extends React.PureComponent {
     minimumDistanceThreshold: Constants.DEFAULT_MINIMUM_DISTANCE_THRESHOLD,
     avoidKeyboard: true,
     onBackButtonPress: null,
+    onShouldAllowDragging: () => true,
     onDragStart: () => {},
     onDragEnd: () => {},
     onMomentumDragStart: () => {},
@@ -190,6 +192,7 @@ class SlidingUpPanel extends React.PureComponent {
     const animatedValue = this.props.animatedValue.__getValue()
 
     return (
+      this.props.onShouldAllowDragging(evt, gestureState) &&
       this._isInsideDraggableRange(animatedValue, gestureState) &&
       Math.abs(gestureState.dy) > this.props.minimumDistanceThreshold
     )
